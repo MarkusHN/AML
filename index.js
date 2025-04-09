@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt'
 
 // Opnar databasen database.db
 const dbPromise = open({
-    filename: 'database.db',
+    filename: 'MinDatabase.db',
     driver: sqlite3.Database
 });
 
