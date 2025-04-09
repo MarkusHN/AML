@@ -1,0 +1,175 @@
+body {
+    display: flex;
+    margin: 0; 
+    flex-direction: column;
+    align-items: center;
+    background: url('bg-img.svg') no-repeat center center fixed;
+    text-align: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px; /* Adjusted for login/register form */
+    margin-top: 50px; /* Centered vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    margin: 1rem 0 0 0; /* Reduced margin for compact form */
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 0.9rem; /* Slightly smaller font for labels */
+}
+
+input {
+    margin: 0.5rem 0 1rem 0; /* Added bottom margin for spacing */
+    width: 100%;
+    max-width: 20rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--input-placeholder);
+    background: var(--input-bg);
+    color: var(--text-color);
+    padding: 0 1rem;
+    font-size: 1rem;
+}
+
+input::placeholder {
+    text-align: center; /* Centers the placeholder text */
+    color: var(--input-placeholder); /* Optional: Keeps the existing placeholder color */
+    padding-left: 10px; /* Optional: Adds padding to shift the placeholder */
+}
+
+button {
+    width: 100%;
+    max-width: 20rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button.primary {
+    background: var(--button-primary);
+    color: var(--text-color);
+    transition: background 0.3s ease;
+}
+
+button.primary:hover {
+    background: var(--button-primary-hover);
+}
+
+button.cancel {
+    background: var(--button-cancel);
+    color: var(--text-color);
+    transition: background 0.3s ease;
+}
+
+button.cancel:hover {
+    background: var(--button-cancel-hover);
+}
+
+/* General container styling */
+.home-container {
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1200px;
+    text-align: center;
+}
+
+/* Navigation styling */
+.navlinks {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+    background: var(--input-placeholder);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.navlinks li {
+    margin: 0 1rem;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.navlinks a.active,
+.navlinks a:hover {
+    background: var(--text-color);
+    color: black;
+}
+
+/* Movie list styling */
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.movie-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.movie-card h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.movie-card p {
+    margin: 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.movie-card strong {
+    color: var(--button-primary);
+}
+
+.save-btn:hover {
+    background: var(--button-primary-hover);
+    /* Lysere grønn ved hover */
+}
+
+.cancel-btn:hover {
+    background: var(--button-cancel-hover);
+    /* Lysere rød ved hover */
+}

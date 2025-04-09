@@ -1,0 +1,92 @@
+body {
+    background: url('bg-img.svg') no-repeat center center fixed;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navigation styling */
+.navlinks {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensures vertical alignment */
+    padding: 1rem;
+    margin: 1rem auto; /* Centers the navlinks horizontally */
+    background: var(--input-placeholder);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    width: fit-content;
+}
+
+.navlinks li {
+    margin: 0 1rem;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.navlinks a.active,
+.navlinks a:hover {
+    background: var(--text-color);
+    color: black;
+}
+
+/* Profile container styling */
+.profile-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    text-align: left;
+    margin: 2rem auto; /* Centers the container horizontally */
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centers the content vertically */
+}
+
+.profile-container h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.profile-container h3 {
+    font-size: 1.5rem;
+    color: var(--button-primary);
+    margin-bottom: 1rem;
+}
+
+.profile-container p {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin: 0.5rem 0;
+}
+
+.profile-container strong {
+    color: var(--button-primary);
+}
+
+/* Edit profile link */
+a[href="/profile/edit"] {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--button-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+a[href="/profile/edit"]:hover {
+    background: var(--button-primary-hover);
+}

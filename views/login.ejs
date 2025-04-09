@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/root.css">
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Hovedmeny">
+            <ul class="navlinks">
+                <li><a href="/">Heim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <div class="container">
+            <div class="form-wrapper">
+                <!-- Login form -->
+                <div id="login-form" class="form-box login">
+                    <label for="chk" aria-hidden="true">
+                        <h1>Logg Inn:</h1>
+                    </label>
+                    <form action="/auth" method="post">
+                        <input type="text" name="email" placeholder="E-post" id="email" required>
+
+                        <input type="password" name="password" placeholder="Passord" id="password" required>
+
+                        <input id="Login" type="submit" value="Logg inn" style="cursor: pointer;">
+                    </form>
+                    <p>Har du ikkje ein konto? <a href="#" id="show-register">Registrer deg her</a></p>
+                </div>
+
+                <!-- Register form -->
+                <div id="register-form" class="form-box signup" style="display: none;">
+                    <label for="chk" aria-hidden="true">
+                        <h1>Registrer deg:</h1>
+                    </label>
+                    <form action="/register" method="post">
+                        <input id="fname" type="text" name="txt" placeholder="Fornamn" required="">
+
+                        <input id="lname" type="text" name="txt" placeholder="Etternamn" required="">
+
+                        <input id="email" type="email" name="email" placeholder="Email" required="">
+
+                        <input id="password" type="password" name="pswd" placeholder="Password" required="">
+
+                        <input type="password" name="confirmPassword" placeholder="Bekreft passord" id="confirmPassword"
+                            required>
+                        <input id="Registrer" type="submit" value="Registrer deg" style="cursor: pointer;">
+                    </form>
+                    <p>Har du allereie ein konto? <a href="#" id="show-login">Logg inn her</a></p>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>

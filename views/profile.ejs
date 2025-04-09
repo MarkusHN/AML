@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min profil</title>
+    <link rel="stylesheet" href="/root.css">
+    <link rel="stylesheet" href="/profile.css">
+    <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="navlinks">
+                <li>
+                    <a href="/home">
+                        <i class="fas fa-home"></i> Heim
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" class="active">
+                        <i class="fas fa-user"></i> Min profil
+                    </a>
+                </li>
+                <% if (admin) { %>
+                  <li>
+                  <a href="/admin"> <i class="fas fa-cogs"></i> Admin </a>
+                  </li>
+                  <% } %>
+                <li>
+                    <a href="/logout">
+                        <i class="fas fa-sign-out-alt"></i> Logg ut
+                    </a>
+                </li>
+            </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="container">
+            <!-- Profilseksjon -->
+            <div class="profile-container">
+                <h2>Min Profil</h2>
+                <h3>Profilinformasjon</h3>
+                <p><strong>Fornavn:</strong> <%= user.firstname %></p>
+                <p><strong>Etternavn:</strong> <%= user.lastname %></p>
+                <p><strong>E-post:</strong> <%= user.email %></p>
+                <a href="/profile/edit">Endre profil</a>
+            </div>
+        </div>
+    </main>
+    
+    
+</body>
+
+</html>

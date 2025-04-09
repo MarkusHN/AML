@@ -1,0 +1,96 @@
+.container {
+    max-width: 30rem;
+}
+
+table {
+    border-collapse: collapse;
+    /* Fjerner dobbel kantlinje */
+    border-spacing: 0;
+    margin: 20px 0;
+    /* Litt avstand fra andre elementer */
+    background: var(--favorite-color);
+    /* Bruker en mørk bakgrunn */
+    color: var(--text-color);
+    border-radius: 8px;
+    overflow: hidden;
+    /* Sikrer avrundede hjørner */
+}
+
+/* Styling av overskriftene (thead) */
+th {
+    background: var(--nav-bg);
+    /* Mørkere farge på header */
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+/* Styling av celler */
+td {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* Tynn linje mellom rader */
+}
+
+/* Gjør annenhver rad litt mørkere */
+tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Hover-effekt når man holder musen over en rad */
+tr:hover {
+    background: rgba(51, 255, 0, 0.2);
+}
+
+/* Justerer ikonene i redigerings- og slettekolonnen */
+.actions {
+    display: flex;
+    gap: 10px;
+    /* Litt avstand mellom ikoner */
+}
+
+/* Knappene for redigering og sletting */
+.editTable-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.editTable-btn {
+    color: #00c776;
+    /* Grønn for redigering */
+}
+
+.delete-btn {
+    color: #ff4d4d;
+    /* Rød for sletting */
+}
+
+/* Legg til en enkel hover-effekt for knappene */
+.editTable-btn:hover,
+.delete-btn:hover {
+    transform: scale(1.2);
+}
+
+.admin-edit-container {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}

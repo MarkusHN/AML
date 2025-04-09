@@ -1,0 +1,15 @@
+:root {
+    --primary-color: #5d6d5d; 
+    --secondary-color: #0f26d9; 
+    --nav-bg: #0f0f0f; 
+    --nav-hover: #222;  
+    --text-color: #e0e0e0;  
+    --accent-color: #00ff88; 
+    --input-bg: rgba(255, 255, 255, 0.1);  
+    --input-placeholder: rgba(255, 255, 255, 0.5); 
+    --button-primary: #14714c; 
+    --button-primary-hover: #0d9c60; 
+    --button-cancel: #444;  
+    --button-cancel-hover: #ff0000; 
+    --favorite-color: #ff0000; 
+}

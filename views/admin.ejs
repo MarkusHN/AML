@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="root.css">
+    <script src="script.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+    <title>Admin</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="navlinks">
+                <li>
+                    <a href="/home">
+                        <i class="fas fa-home"></i> Heim
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <i class="fas fa-user"></i> Min profil
+                    </a>
+                </li>
+                <% if (admin) { %>
+                    <li>
+                        <a href="/admin" class="active"> <i class="fas fa-cogs"></i> Admin </a>
+                    </li>
+                <% } %>
+                <li>
+                    <a href="/logout">
+                        <i class="fas fa-sign-out-alt"></i> Logg ut
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Admin Panel</h2>
+            <h3>Brukere</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fornavn</th>
+                            <th>Etternavn</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user) => { %>
+                            <tr>
+                                <td data-label="Fornavn"><%= user.firstname %></td>
+                                <td data-label="Etternavn"><%= user.lastname %></td>
+                                <td data-label="Email"><%= user.email %></td>
+                                <td class="actions">
+                                    <a href="/admin/edit/<%= user.id %>" class="editTable-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                
+                                    <form action="/admin/delete/<%= user.id %>" method="post"
+                                          onsubmit="return confirm('Er du sikker på at du vil slette denne brukeren?');">
+                                        <a type="submit" class="delete-btn">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                        
+                                    </form>
+                                </td>
+                                                       
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </main>
+</body>
+</html>
