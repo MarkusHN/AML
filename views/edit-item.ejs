@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/root.css">
+  <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+  <title>Edit <%= item.name %></title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="navlinks">
+        <li>
+          <a href="/aml">
+            <i class="fas fa-home"></i> Home
+          </a>
+        </li>
+        <li>
+          <a href="/profile">
+            <i class="fas fa-user"></i> Min profil
+          </a>
+        </li>
+        <% if (admin) { %>
+          <li>
+            <a href="/admin"> <i class="fas fa-cogs"></i> Admin </a>
+          </li>
+          <li>
+            <a href="/aml-admin"> <i class="fas fa-list"></i> AML Admin </a>
+          </li>
+        <% } %>
+        <li>
+          <a href="/logout">
+            <i class="fas fa-sign-out-alt"></i> Logg ut
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <div class="home-container">
+      <h1>Edit <%= item.name %></h1>
+      
+      <div class="edit-form">
+        <form action="/edit-item/<%= item.id %>" method="POST">
+          <input type="hidden" name="category" value="<%= item.category %>">
+          
+          <div class="form-group">
+            <label for="name">Title:</label>
+            <input type="text" id="name" name="name" value="<%= item.name %>" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="link">MAL Link:</label>
+            <input type="url" id="link" name="link" value="<%= item.link %>" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="image_url">Image URL:</label>
+            <input type="url" id="image_url" name="image_url" value="<%= item.image_url %>" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="Completed" <%= item.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+              <option value="In Progress" <%= item.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+              <option value="Plan to Watch" <%= item.status === 'Plan to Watch' ? 'selected' : '' %>>Plan to Watch</option>
+            </select>
+          </div>
+          
+          <div class="form-actions">
+            <button style="margin-top: 1rem;" type="submit" class="btn-primary">Save Changes</button>
+            <button style="margin-top: 1rem;" class="btn-secondary" ><a style="text-decoration: none; color:black;" href="/aml?category=<%= item.category %>" >Cancel</a></button>
+          </div>
+        </form>
+        
+        <!-- Preview section -->
+        <div class="item-preview">
+          <h3>Preview</h3>
+          <div class="movie-card">
+            <img src="<%= item.image_url %>" alt="<%= item.name %> poster" class="movie-poster">
+            <h2><%= item.name %></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script>
+    // Live preview functionality
+    document.getElementById('name').addEventListener('input', function() {
+      document.querySelector('.item-preview h2').textContent = this.value;
+    });
+    
+    document.getElementById('image_url').addEventListener('input', function() {
+      document.querySelector('.item-preview img').src = this.value;
+    });
+  </script>
+</body>
+
+</html>

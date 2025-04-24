@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/root.css">
+    <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+
+    <title>Manga</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="navlinks">
+                <li>
+                    <a href="/aml?category=anime" class="<%= category === 'anime' ? 'active' : '' %>">
+                        <i class="fas fa-tv"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <i class="fas fa-user"></i> Min profil
+                    </a>
+                </li>
+                <% if (admin) { %>
+                    <li>
+                        <a href="/admin">
+                            <i class="fas fa-cogs"></i> Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/aml-admin">
+                            <i class="fas fa-list"></i> AML Admin
+                        </a>
+                    </li>
+                    <% } %>
+                        <li>
+                            <a href="/logout">
+                                <i class="fas fa-sign-out-alt"></i> Logg ut
+                            </a>
+                        </li>
+
+        </nav>
+    </header>
+    <main>
+        <div class="home-container">
+            <h1>Markus' manga readlist</h1>
+            <div class="movie-list">
+                <% movies.forEach(movie=> { %>
+                    <div class="movie-card">
+                        <img src="<%= movie.image_url %>" alt="<%= movie.tittel %> poster" class="movie-poster">
+                        <h2>
+                            <%= movie.name %>
+                        </h2>
+                        <p><strong>MAL lenke:</strong>
+                            <a href="<%= movie.link %>" target="_blank" rel="noopener noreferrer">
+                                <%= movie.link %>
+                            </a>
+                        </p>
+                        <p><strong>Status:</strong>
+                            <%= movie.status %>
+                        </p>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -17,5 +17,13 @@
     "express-session": "^1.18.1",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkusHN/AML.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MarkusHN/AML/issues"
+  },
+  "homepage": "https://github.com/MarkusHN/AML#readme"
 }

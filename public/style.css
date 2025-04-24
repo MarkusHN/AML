@@ -9,7 +9,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
+.small-container{
     background: rgba(255, 255, 255, 0.3);
     padding: 2rem;
     border-radius: 10px;
@@ -17,6 +17,20 @@ body {
     backdrop-filter: blur(10px);
     width: 100%;
     max-width: 400px; /* Adjusted for login/register form */
+    margin-top: 50px; /* Centered vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    background: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    width: 100%;
     margin-top: 50px; /* Centered vertically */
     display: flex;
     flex-direction: column;
@@ -59,7 +73,6 @@ button {
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 1rem;
 }
 
 button.primary {
@@ -173,3 +186,117 @@ button.cancel:hover {
     background: var(--button-cancel-hover);
     /* Lysere rød ved hover */
 }
+
+.category-selector {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .category-selector select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .category-selector button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .category-selector button:hover {
+    background-color: #45a049;
+  }
+
+  .search-container {
+    width: 100%;
+    max-width: fit-content;
+    margin: 20px auto;
+    position: relative;
+  }
+  
+  .search-input-container {
+    display: flex;
+    align-items: center;
+    background-color: #f5f7fa;
+    border-radius: 50px;
+    padding: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .search-input-container:focus-within {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    background-color: #ffffff;
+    transform: translateY(-2px);
+  }
+  
+  .search-input-container input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    border-radius: 50px;
+  }
+  
+  .search-input-container input[type="text"]::placeholder {
+    color: #8a94a6;
+    opacity: 0.8;
+  }
+  
+  .search-input-container button {
+    background-color: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+  
+  .search-input-container button:hover {
+    background-color: #3a5cf0;
+  }
+  
+  /* If you're using Font Awesome for the search icon */
+  .search-input-container button i {
+    font-size: 18px;
+  }
+  
+  .tag-anime {
+    background-color: #ffecec;
+    color: #e74c3c;
+  }
+  
+  .tag-manga {
+    background-color: #e3f2fd;
+    color: #2196f3;
+  }
+  
+  .tag-novel {
+    background-color: #e8f5e9;
+    color: #4caf50;
+  }
+  
+  .no-results {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 50px;
+    margin-top: 20px;
+  }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/admin.css">
+    <link rel="stylesheet" href="/root.css">
+    <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+    <title>Admin - AML Content</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="navlinks">
+                <li>
+                    <a href="/aml">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <i class="fas fa-user"></i> Min profil
+                    </a>
+                </li>
+                <% if (admin) { %>
+                    <li>
+                        <a href="/admin">
+                            <i class="fas fa-cogs"></i> Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/aml-admin" class="active">
+                            <i class="fas fa-list"></i> AML Admin
+                        </a>
+                    </li>
+                    <% } %>
+                        <li>
+                            <a href="/logout">
+                                <i class="fas fa-sign-out-alt"></i> Logg ut
+                            </a>
+                        </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 class="page-title">AML Content Admin</h2>
+
+            <div class="category-selector">
+                <form action="/aml-admin" method="GET">
+                    <label for="category" class="category-label">Velg kategori:</label>
+                    <select name="category" id="category" class="category-dropdown">
+                        <option value="all" <%=category==='all' ? 'selected' : '' %>>Alle</option>
+                        <option value="anime" <%=category==='anime' ? 'selected' : '' %>>Anime</option>
+                        <option value="manga" <%=category==='manga' ? 'selected' : '' %>>Manga</option>
+                        <option value="novel" <%=category==='novel' ? 'selected' : '' %>>Roman</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="table-container">
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Navn</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Link</th>
+                            <th>Bruker ID</th>
+                            <th>Handlinger</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% items.forEach(item=> { %>
+                            <tr>
+                                <td data-label="ID">
+                                    <%= item.id %>
+                                </td>
+                                <td data-label="Navn">
+                                    <%= item.name %>
+                                </td>
+                                <td>
+                                    <%= item.category %>
+                                </td>
+                                <td data-label="Status">
+                                    <%= item.status %>
+                                </td>
+                                <td data-label="Link"><a href="<%= item.link %>" target="_blank"
+                                        class="external-link"><i class="fas fa-external-link-alt"></i></a></td>
+                                <td data-label="MAL ID">
+                                    <%= item.user_id %>
+                                </td>
+                                <td class="actions" style="display: flex; align-items: center; gap: 10px;">
+                                    <a href="/aml-admin/edit/<%= item.id %>" class="editTable-btn"
+                                        style="display: flex; align-items: center;">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+
+                                    <form action="/aml-admin/delete/<%= item.id %>" method="post"
+                                        onsubmit="return confirm('Er du sikker på at du vil slette dette innholdet?');"
+                                        style="display: flex; align-items: center;">
+                                        <button type="submit" class="delete-btn"
+                                            style="display: flex; align-items: center;">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Auto-submit form when selection changes
+        document.getElementById('category').addEventListener('change', function () {
+            this.form.submit();
+        });
+    </script>
+</body>
+
+</html>

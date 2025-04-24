@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/root.css">
+  <script src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+
+  <title>
+    <%= category.charAt(0).toUpperCase() + category.slice(1) %>
+  </title>
+  <style>
+    .movie-card {
+      position: relative;
+    }
+    
+    .card-actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .card-actions a {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .card-actions a:hover {
+      background-color: #fff;
+      transform: scale(1.1);
+    }
+    
+    .edit-icon {
+      color: #4a90e2;
+    }
+    
+    .delete-icon {
+      color: #e74c3c;
+    }
+    
+    .status-select {
+      padding: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+    }
+    
+    .status-form {
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="navlinks">
+        <li>
+          <a href="/aml" class="<%= category ? 'active' : '' %>">
+            <i class="fas fa-home"></i> Hjem
+          </a>
+        </li>
+        <li>
+          <a href="/profile">
+            <i class="fas fa-user"></i> Min profil
+          </a>
+        </li>
+        <% if (admin) { %>
+          <li>
+            <a href="/admin"> <i class="fas fa-cogs"></i> Admin </a>
+          </li>
+          <li>
+            <a href="/aml-admin"> <i class="fas fa-list"></i> AML Admin </a>
+          </li>
+        <% } %>
+        <li>
+          <a href="/logout">
+            <i class="fas fa-sign-out-alt"></i> Logg ut
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="search-container">
+      <form action="/search" method="GET">
+        <div class="search-input-container">
+          <input type="text" name="query" placeholder="Søk" required>
+          <input type="hidden" name="category" value="<%= category %>">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+      <% if (typeof isSearchResult !== 'undefined' && isSearchResult) { %>
+        <div class="search-results-header">
+          <p>Viser resultat for "<%= searchQuery %>"</p>
+          <a href="/aml?category=<%= category %>">Fjern søk</a>
+        </div>
+      <% } %>
+    <div class="home-container">
+      <h1>
+        <%= user.firstname %>'s <%= category==='anime' ? 'anime watchlist' : category==='manga' ? 'manga readlist'
+            : 'novel readlist' %>
+      </h1>      
+
+      <div class="category-selector">
+        <form action="/aml" method="GET">
+          <select name="category" id="category">
+            <option value="anime" <%=category==='anime' ? 'selected' : '' %>>Anime</option>
+            <option value="manga" <%=category==='manga' ? 'selected' : '' %>>Manga</option>
+            <option value="novel" <%=category==='novel' ? 'selected' : '' %>>Roman</option>
+          </select>
+        </form>
+      </div>
+
+      <!-- Add form before or after the movie-list div -->
+      <div class="add-item-form">
+        <h2>Legg til i din <%= category %> liste</h2>
+        <form action="/add-item" method="POST">
+          <input type="hidden" name="category" value="<%= category %>">
+
+          <div class="form-group">
+            <label for="name">Tittel:</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="link">Lenke:</label>
+            <input type="url" id="link" name="link" required>
+          </div>
+
+          <div class="form-group">
+            <label for="image_url">Bilde URL:</label>
+            <input type="url" id="image_url" name="image_url" required>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="Completed">Completed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Plan to Watch">Plan to Watch</option>
+              <option value="Dropped">Dropped</option>
+              <option value="On-Hold">On-Hold</option>
+            </select>
+          </div>
+
+          <button style="margin-top: 1rem;" type="submit">Legg til</button>
+        </form>
+      </div>
+
+      <div class="movie-list">
+        <% if (typeof isSearchResult !== 'undefined' && isSearchResult && movies.length === 0) { %>
+          <div class="no-results">
+            <p>Ingen resultat for "<%= searchQuery %>".</p>
+            <p>Prøv å skriv noko anna eller <a href="/aml?category=<%= category %>">return to <%= category %> list</a>.</p>
+          </div>
+        <% } %>
+        <% movies.forEach(movie => { %>
+          <div class="movie-card">
+            <div class="card-actions">
+              <a href="/edit-item/<%= movie.id %>" class="edit-icon" title="Edit">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a href="#" onclick="confirmDelete('<%= movie.id %>')" class="delete-icon" title="Delete">
+                <i class="fas fa-trash"></i>
+              </a>
+            </div>
+            
+            <img src="<%= movie.image_url %>" alt="<%= movie.tittel %> poster" class="movie-poster">
+            
+            <!-- Show category tag when viewing search results -->
+            <% if (typeof isSearchResult !== 'undefined' && isSearchResult) { %>
+              <span class="category-tag tag-<%= movie.category %>"><%= movie.category %></span>
+            <% } %>
+            
+            <h2><%= movie.name %></h2>
+            <p><strong>Lenke:</strong>
+              <a href="<%= movie.link %>" target="_blank" rel="noopener noreferrer">
+                <%= movie.link %>
+              </a>
+            </p>
+            <p><strong>Status:</strong>
+              <!-- Status dropdown that can be changed directly -->
+              <form action="/update-status/<%= movie.id %>" method="POST" class="status-form">
+                <select name="status" class="status-select" onchange="this.form.submit()">
+                  <option value="Completed" <%= movie.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+                  <option value="In Progress" <%= movie.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+                  <option value="Plan to Watch" <%= movie.status === 'Plan to Watch' ? 'selected' : '' %>>Plan to Watch</option>
+                  <option value="Dropped" <%= movie.status === 'Dropped' ? 'selected' : '' %>>Dropped</option>
+                  <option value="Watching" <%= movie.status === 'Watching' ? 'selected' : '' %>>Watching</option>
+                  <option value="On-Hold" <%= movie.status === 'On-Hold' ? 'selected' : '' %>>On-Hold</option>
+                </select>
+              </form>
+            </p>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Auto-submit form when selection changes
+    document.getElementById('category').addEventListener('change', function () {
+      this.form.submit();
+    });
+    
+    // Confirm delete function
+    function confirmDelete(id) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        window.location.href = '/delete-item/' + id;
+      }
+    }
+  </script>
+</body>
+
+</html>
